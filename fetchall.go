@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -13,10 +14,18 @@ func main() {
 	start := time.Now()
 	ch := make(chan string)
 
-	for _, url := range os.Args[1:] {
+	f, err := ioutil.ReadFile("urls.txt")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	sliceData := strings.Split(string(f), "\n")
+
+	for _, url := range sliceData {
 		go fetch(url, ch) // start a goroutine
 	}
-	for range os.Args[1:] {
+	for range sliceData {
 		fmt.Println(<-ch) // receive from channel ch
 	}
 	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
