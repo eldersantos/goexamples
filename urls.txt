@@ -8,3 +8,13 @@ http://ebay.com
 http://walmart.com
 http://cnn.com
 http://zoom.us
+http://medium.com
+http://bing.com
+http://archieve.org
+http://4shared.com
+http://plesk.com
+http://www.microsoft.com
+http://airbnb.com
+http://skype.com
+http://slack.com
+http://yandex.com

@@ -6,11 +6,13 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 )
 
 func main() {
+	runtime.GOMAXPROCS(4)
 	start := time.Now()
 	ch := make(chan string)
 
@@ -20,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	sliceData := strings.Split(string(f), "\n")
+	sliceData := strings.Split(string(f), "\r\n")
 
 	for _, url := range sliceData {
 		go fetch(url, ch) // start a goroutine
@@ -46,5 +48,5 @@ func fetch(url string, ch chan<- string) {
 		return
 	}
 	secs := time.Since(start).Seconds()
-	ch <- fmt.Sprintf("%.2fs  %7d  %s", secs, nbytes, url)
+	ch <- fmt.Sprintf("%.2fs  %7d  %3d  %s", secs, nbytes, resp.StatusCode, url)
 }
