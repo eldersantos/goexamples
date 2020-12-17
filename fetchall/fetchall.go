@@ -1,4 +1,4 @@
-package main
+package fetchall
 
 import (
 	"fmt"
@@ -11,7 +11,8 @@ import (
 	"time"
 )
 
-func main() {
+// Main method
+func Main() {
 	runtime.GOMAXPROCS(4)
 	start := time.Now()
 	ch := make(chan string)

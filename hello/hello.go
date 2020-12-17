@@ -1,4 +1,4 @@
-package main
+package hello
 
 import (
 	"fmt"
@@ -8,7 +8,8 @@ import (
 
 const name = "John Doe"
 
-func main() {
+// Main method
+func Main() {
 	fmt.Println("Hello World 的", name)
 	for _, arg := range os.Args[1:] {
 		fmt.Println(arg)

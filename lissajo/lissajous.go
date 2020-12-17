@@ -1,4 +1,4 @@
-package main
+package lissajo
 
 import (
 	"image"
@@ -17,7 +17,8 @@ const (
 	blackIndex = 1 // next color in palette
 )
 
-func main() {
+// Main method
+func Main() {
 	lissajous(os.Stdout)
 }
 
