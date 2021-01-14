@@ -1,4 +1,4 @@
-package main
+package fetchall
 
 import (
 	"fmt"
@@ -6,10 +6,12 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 )
 
+<<<<<<< HEAD:fetchall.go
 // type for urlcounts
 type UrlCounts struct {
 	Message string
@@ -18,6 +20,11 @@ type UrlCounts struct {
 }
 
 func main() {
+=======
+// Main method
+func Main() {
+	runtime.GOMAXPROCS(4)
+>>>>>>> 7272bbdfce59c6670f49700e762ddd6988d3c5fb:fetchall/fetchall.go
 	start := time.Now()
 	ch := make(chan UrlCounts)
 
@@ -27,7 +34,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	sliceData := strings.Split(string(f), "\n")
+	sliceData := strings.Split(string(f), "\r\n")
 
 	for _, url := range sliceData {
 		if !strings.HasPrefix(url, "http") {
@@ -57,6 +64,10 @@ func fetch(url string, ch chan<- UrlCounts) {
 		return
 	}
 	secs := time.Since(start).Seconds()
+<<<<<<< HEAD:fetchall.go
 	ch.Message <- fmt.Sprintf("%.2fs  %7d  %s", secs, nbytes, url)
 	ch.Success++
+=======
+	ch <- fmt.Sprintf("%.2fs  %7d  %3d  %s", secs, nbytes, resp.StatusCode, url)
+>>>>>>> 7272bbdfce59c6670f49700e762ddd6988d3c5fb:fetchall/fetchall.go
 }

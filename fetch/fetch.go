@@ -1,4 +1,4 @@
-package main
+package fetch
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func main() {
+func Main() {
 	for _, url := range os.Args[1:] {
 		if !strings.HasPrefix(url, "http") {
 			url = "http://" + url

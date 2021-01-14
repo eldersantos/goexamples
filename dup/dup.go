@@ -1,4 +1,4 @@
-package main
+package dup
 
 import (
 	"bufio"
@@ -6,7 +6,8 @@ import (
 	"os"
 )
 
-func main() {
+// Main method
+func Main() {
 	counts := make(map[string]int)
 	files := os.Args[1:]
 	if len(files) == 0 {
